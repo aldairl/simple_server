@@ -1,9 +1,11 @@
 // server.js
 require('dotenv').config();  // Importar dotenv para leer el archivo .env
 const express = require('express');
+const cors = require('cors')
 const app = express();
 
 // Middleware para procesar JSON en las solicitudes
+app.use(cors())
 app.use(express.json());
 
 // Ruta POST
