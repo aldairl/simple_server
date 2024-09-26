@@ -7,6 +7,10 @@ const app = express();
 app.use(express.json());
 
 // Ruta POST
+app.get('/', (req, res) => {
+    res.json({ message: 'Datos recibidos correctamente', data: 'receivedData' });
+});
+
 app.post('/data', (req, res) => {
     const receivedData = req.body;
     console.log('Datos recibidos:', receivedData);
