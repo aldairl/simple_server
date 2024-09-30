@@ -3,6 +3,9 @@ require('dotenv').config();  // Importar dotenv para leer el archivo .env
 const express = require('express');
 const cors = require('cors')
 const app = express();
+const multer = require('multer');
+
+const upload = multer({ dest: 'uploads/' });
 
 // Middleware para procesar JSON en las solicitudes
 app.use(cors())
@@ -11,13 +14,15 @@ app.use(express.text())
 app.use(express.urlencoded({ extended: true }))
 
 // Ruta POST
-app.get('/', (req, res) => {
+app.get('/', upload.single('audio'), (req, res) => {
     res.json({ message: 'Datos recibidos correctamente', data: 'receivedData' });
 });
 
-app.post('/data', (req, res) => {
+app.post('/data', upload.single('audio'), (req, res) => {
     const receivedData = req.body;
-    console.log('Datos recibidos:', receivedData);
+
+    const {file} = req;
+    console.log('Datos recibidos:', receivedData, "file=", file);
     res.json({ message: 'Datos recibidos correctamente', data: receivedData });
 });
 
