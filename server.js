@@ -30,6 +30,15 @@ app.post('/data', (req, res) => {
     res.json({ message: 'Datos recibidos correctamente', data: receivedData, files });
 });
 
+app.post('/belcorp', (req, res) => {
+    const receivedData = req.body;
+
+    const {files} = req;
+    console.log('Datos recibidos:', receivedData);
+
+    res.json({ message: 'Datos recibidos correctamente', data: receivedData, files });
+});
+
 // Obtener el puerto desde la variable de entorno
 const PORT = process.env.PORT || 3000;
 
